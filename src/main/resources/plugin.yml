@@ -1,0 +1,7 @@
+name: SSReach
+author: zNotDev
+version: 1.0-SNAPSHOT
+main: io.github.znotdev.ssreach.Main
+commands:
+  distance:
+  ssreach:
