@@ -9,9 +9,9 @@
 ---
 
 ### Commands
-* /distance <player> <range>
-    * <player> | The player we want to edit his range.
-    * <range>  | The amount of range we want to make the player hit from.
+* /distance \<player\> \<range\>
+    * \<player\> | The player we want to edit his range.
+    * \<range\>  | The amount of range we want to make the player hit from.
 
 ### TODO
 
