@@ -1,23 +1,23 @@
 package io.github.znotdev.ssreach.listeners;
 
 import eu.vortexdev.api.KnockbackAPI;
-import eu.vortexdev.api.knockback.KnockbackProfile;
 import io.github.znotdev.ssreach.Main;
-import jdk.nashorn.internal.ir.Block;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
 public class HitListener implements Listener {
 
     private Main plugin;
+
+    public void applyKnockback(Player player, double horizontal, double vertical) {
+        Vector knockbackVelocity = player.getLocation().getDirection().multiply(horizontal).setY(vertical);
+        player.setVelocity(knockbackVelocity);
+    }
 
     public HitListener(Main plugin) {
         this.plugin = plugin;
@@ -26,7 +26,11 @@ public class HitListener implements Listener {
     public void PlayerLeftClick (PlayerInteractEvent e) {
         if (e.getAction() == Action.LEFT_CLICK_AIR) {
             Player player = e.getPlayer();
-            for (Entity entity : player.getNearbyEntities(5, 5, 5)) {
+            Integer dist;
+
+            if (!plugin.json.containsKey(player.getUniqueId())) {return;} else {dist = (Integer) plugin.json.get(player.getUniqueId());}
+
+            for (Entity entity : player.getNearbyEntities(dist, dist, dist)) {
                 if (entity instanceof Player && entity.getLocation().distanceSquared(player.getLocation()) <= 25) {
                     Vector toEntity = entity.getLocation().subtract(player.getEyeLocation()).toVector().normalize();
                     Vector direction = player.getEyeLocation().getDirection().normalize();
@@ -39,7 +43,9 @@ public class HitListener implements Listener {
                             return;
                         }
                         toBeDamaged.damage(1.0);
-                        KnockbackAPI.applyKnockback(KnockbackAPI.getDefault(), toBeDamaged);
+                        Double hzt = KnockbackAPI.getDefault().horizontal.getValue();
+                        Double vtl = KnockbackAPI.getDefault().vertical.getValue();
+                        applyKnockback(toBeDamaged, hzt, vtl);
                         return;
                     }
                 }
