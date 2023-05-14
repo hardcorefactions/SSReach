@@ -17,5 +17,4 @@
 
 - [ ] Add the main command
 - [ ] Better aim detection for player
-- [x] Wait for <a href="https://github.com/xVorttex/">vortex</a> to respond for knockback applying.
-      Just realised I'm an idiot and I did it wrong.
+- [ ] Add knockback to player
