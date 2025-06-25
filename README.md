@@ -4,7 +4,6 @@
     Server sided reach plugin hooked with <a href="https://builtbybit.com/resources/vortexspigot-all-in-one.20988/">VortexSpigot</a>.
     <br><br>
     This is a project I decided to start myself. It isn't finished. If you got anything to add to it. Make a pull request.
-
     <b>WARNING</b> Please, do not try to use this, it's broken af and it doesn't work well, that's why it's archived, this was one of my first plugins and I did not know how to really code with Bukkit at the time nor basic java.
 </p>
 
